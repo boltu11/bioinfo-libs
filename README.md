@@ -1,1 +1,1 @@
-This library is used by me to tackle bioinformatics challenges.
+I am building this library as i am tackling problems in bioformatics. 
