@@ -12,9 +12,6 @@ using namespace std;
 int main() 
 {
 
-
-    enum_k_mers("C:\\Users\\navi_\\Documents\\result.txt","ACGT",5);
-
     return 0;
     
 } 

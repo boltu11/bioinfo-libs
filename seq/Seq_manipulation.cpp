@@ -256,41 +256,99 @@ void enum_gene_order(std::string file_location, int n){
 void enum_k_mers(std::string file_location, std::string k_mers, int string_length)
 {
     ofstream file;
+    std::vector<char>::iterator it;
     file.open(file_location);
 
-    std::vector<std::vector<char>> order_collection;
-    
-
-
-    int s = k_mers.size() * string_length;
+    int s = pow(k_mers.size(),string_length);
 
     for(int i = 1;i<=s;i++)
     {
         std::vector<char> orders;
 
-        std::vector<int> inty;
-
         for(int j =0;j<string_length;j++)
         {
+            int temp = 0;
+
             if(j==0)
             { //Base
-                inty.push_back(i % string_length);
+                temp = i % k_mers.size();
+
+                if(temp == 0)
+                {
+                    temp = k_mers.size();
+                }
             }
             else
             {
-                inty.push_back(((i-(i%(string_length * j)))/(string_length * j) + 1)%(string_length * j));
+                int temp_2 = i%((int)pow(k_mers.size(),j));
+
+                if(temp_2 == 0)
+                {
+                    temp_2 = pow(k_mers.size(),j);
+                }
+
+                int temp_3 = (i-temp_2)/pow(k_mers.size(),j) + 1;
+                temp = temp_3 % k_mers.size();
+
+                if(temp == 0)
+                {
+                    temp = (k_mers.size());
+                }
             }
+
+            it = orders.begin();
+            orders.insert(it,k_mers[temp-1]);
         }
-                    for (const auto &e :inty) cout << e << " ";
+            for (const auto &e :orders) file  << e;
 
-            cout << "\n";
-
+            file  << "\n";
     }
        
 
     file.close();
 }
 
+std::string  RNA_to_protein(std::string RNA_string)
+{
+    std::string codon;
+    for(int i =0;i<RNA_string.size();i++)
+    {
+        codon.push_back(RNA_string[i]);
+
+        if(codon.size() == 3)
+        {
+
+        }
+    }
+}
+
+char codon_lookup(std::string rna_string)
+{
+    std::pair<std::string,char> codon ();
+
+
+    std::vector<std::pair<std::string,char>> codon_vector;
+
+
+
+
+    if(rna_string.compare("UUU") == 0 || rna_string.compare("UUC") == 0)
+    {
+        return 'F';
+    }
+
+    if(rna_string.compare("UUU") == 0)
+    {
+        return 'F';
+    }
+
+
+
+
+
+
+
+}
 
 
 
